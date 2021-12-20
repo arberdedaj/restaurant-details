@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -31,11 +32,53 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jwV-o9-Nvi">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sKg-23-ZFI">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="fR8-gu-PvJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="7XO-Jm-iKa">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q5W-Se-BJq">
+                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                                <items>
+                                    <barButtonItem image="sorting-icon" id="Yfy-Gl-vMF">
+                                        <connections>
+                                            <action selector="sortButtonTapped:" destination="BYZ-38-t0r" id="CWB-GB-y58"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Q5W-Se-BJq" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="4nS-K3-Iea"/>
+                            <constraint firstItem="Q5W-Se-BJq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="SsZ-aa-NOg"/>
+                            <constraint firstItem="Q5W-Se-BJq" firstAttribute="top" secondItem="jwV-o9-Nvi" secondAttribute="bottom" id="XLf-eN-ktI"/>
+                            <constraint firstItem="jwV-o9-Nvi" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="hqL-jG-YaW"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jwV-o9-Nvi" secondAttribute="trailing" id="hrL-ZY-zWl"/>
+                            <constraint firstItem="jwV-o9-Nvi" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="iC4-NT-knV"/>
+                            <constraint firstItem="Q5W-Se-BJq" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="nh4-iX-bq0"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="qDf-0f-qqK"/>
                     <connections>
+                        <outlet property="collectionView" destination="jwV-o9-Nvi" id="Fa2-7v-1Cl"/>
                         <outlet property="searchBar" destination="FWE-hd-nxK" id="mQj-oK-7Hy"/>
                     </connections>
                 </viewController>
@@ -46,10 +89,11 @@
                     <textInputTraits key="textInputTraits"/>
                 </searchBar>
             </objects>
-            <point key="canvasLocation" x="-680" y="-2"/>
+            <point key="canvasLocation" x="-681.15942028985512" y="-2.0089285714285712"/>
         </scene>
     </scenes>
     <resources>
+        <image name="sorting-icon" width="28" height="28"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
