@@ -9,10 +9,12 @@ import UIKit
 
 class RestaurantsViewController: UIViewController {
 
+    @IBOutlet var searchBar: UISearchBar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
 
+        navigationItem.titleView = searchBar
+    }
 }
 
