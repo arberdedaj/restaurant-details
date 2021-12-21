@@ -16,6 +16,10 @@
 		0B35FDB6277111AD0088BC00 /* RestaurantDetailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B35FDB5277111AD0088BC00 /* RestaurantDetailsTests.swift */; };
 		0B35FDC0277111AD0088BC00 /* RestaurantDetailsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B35FDBF277111AD0088BC00 /* RestaurantDetailsUITests.swift */; };
 		0B35FDC2277111AD0088BC00 /* RestaurantDetailsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B35FDC1277111AD0088BC00 /* RestaurantDetailsUITestsLaunchTests.swift */; };
+		0B35FDD1277126C50088BC00 /* RestaurantsApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B35FDD0277126C50088BC00 /* RestaurantsApiClient.swift */; };
+		0B35FDD4277127090088BC00 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B35FDD3277127090088BC00 /* Restaurant.swift */; };
+		0B35FDD62771A7720088BC00 /* URLSession+jsonDecodableTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B35FDD52771A7720088BC00 /* URLSession+jsonDecodableTask.swift */; };
+		0B35FDD82771B00A0088BC00 /* BusinessesResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B35FDD72771B00A0088BC00 /* BusinessesResponseDTO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,10 @@
 		0B35FDBB277111AD0088BC00 /* RestaurantDetailsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RestaurantDetailsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B35FDBF277111AD0088BC00 /* RestaurantDetailsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailsUITests.swift; sourceTree = "<group>"; };
 		0B35FDC1277111AD0088BC00 /* RestaurantDetailsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		0B35FDD0277126C50088BC00 /* RestaurantsApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsApiClient.swift; sourceTree = "<group>"; };
+		0B35FDD3277127090088BC00 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		0B35FDD52771A7720088BC00 /* URLSession+jsonDecodableTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+jsonDecodableTask.swift"; sourceTree = "<group>"; };
+		0B35FDD72771B00A0088BC00 /* BusinessesResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessesResponseDTO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,9 +138,29 @@
 		0B35FDCE2771145E0088BC00 /* Restaurants */ = {
 			isa = PBXGroup;
 			children = (
+				0B35FDCF277126990088BC00 /* ApiClient */,
 				0B35FDA2277111AA0088BC00 /* RestaurantsViewController.swift */,
 			);
 			path = Restaurants;
+			sourceTree = "<group>";
+		};
+		0B35FDCF277126990088BC00 /* ApiClient */ = {
+			isa = PBXGroup;
+			children = (
+				0B35FDD2277126FF0088BC00 /* Response */,
+				0B35FDD0277126C50088BC00 /* RestaurantsApiClient.swift */,
+				0B35FDD52771A7720088BC00 /* URLSession+jsonDecodableTask.swift */,
+			);
+			path = ApiClient;
+			sourceTree = "<group>";
+		};
+		0B35FDD2277126FF0088BC00 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				0B35FDD3277127090088BC00 /* Restaurant.swift */,
+				0B35FDD72771B00A0088BC00 /* BusinessesResponseDTO.swift */,
+			);
+			path = Response;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,7 +294,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B35FDD4277127090088BC00 /* Restaurant.swift in Sources */,
+				0B35FDD62771A7720088BC00 /* URLSession+jsonDecodableTask.swift in Sources */,
+				0B35FDD82771B00A0088BC00 /* BusinessesResponseDTO.swift in Sources */,
 				0B35FDA3277111AA0088BC00 /* RestaurantsViewController.swift in Sources */,
+				0B35FDD1277126C50088BC00 /* RestaurantsApiClient.swift in Sources */,
 				0B35FD9F277111AA0088BC00 /* AppDelegate.swift in Sources */,
 				0B35FDA1277111AA0088BC00 /* SceneDelegate.swift in Sources */,
 			);
