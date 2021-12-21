@@ -19,7 +19,7 @@ class RestaurantsApiClient: RestaurantsApiClientProtocol {
     private let baseUrl: String
     private let apiKey: String
 
-    let searchRestaurantsPath = "/businesses/search"
+    private let searchRestaurantsPath = "/businesses/search"
 
     init(baseUrl: String = "https://api.yelp.com/v3", apiKey: String) {
         self.baseUrl = baseUrl
@@ -35,14 +35,14 @@ class RestaurantsApiClient: RestaurantsApiClientProtocol {
             let httpHeaders = setupHTTPHeaders(apiKey: apiKey,
                                                contentType: "Application/json")
             // setup query parameters
-            let queryItems = setupQueryItems(term: term,
+            let queryParams = setupQueryParams(term: term,
                                              latitude: latitude,
                                              longitude: longitude)
             // create url request
             let urlRequest = try createUrlRequest(baseUrl: baseUrl,
                                                   path: searchRestaurantsPath,
                                                   headers: httpHeaders,
-                                                  queryParams: queryItems)
+                                                  queryParams: queryParams)
 
             // execute url request
             URLSession.shared.jsonDecodableTask(with: urlRequest) { (result: Result<BusinessesResponseDTO, Error>) in
@@ -66,9 +66,9 @@ class RestaurantsApiClient: RestaurantsApiClientProtocol {
                 "Content-type": contentType]
     }
 
-    private func setupQueryItems(term: String,
-                                 latitude: Double,
-                                 longitude: Double) -> [String: String] {
+    private func setupQueryParams(term: String,
+                                  latitude: Double,
+                                  longitude: Double) -> [String: String] {
         return ["term": term,
                 "latitude": "\(latitude)",
                 "longitude": "\(longitude)"]
