@@ -26,6 +26,8 @@ class RestaurantsApiClient: RestaurantsApiClientProtocol {
         self.apiKey = apiKey
     }
 
+    // MARK: RestaurantsApiClientProtocol
+
     func fetchRestaurants(term: String,
                           latitude: Double,
                           longitude: Double,
@@ -60,8 +62,10 @@ class RestaurantsApiClient: RestaurantsApiClientProtocol {
         }
     }
 
+    // MARK: Private
+
     private func setupHTTPHeaders(apiKey: String,
-                                  contentType: String) -> [AnyHashable: Any] {
+                                  contentType: String) -> [String: String] {
         return ["Authorization": "Bearer \(apiKey)",
                 "Content-type": contentType]
     }
@@ -76,7 +80,7 @@ class RestaurantsApiClient: RestaurantsApiClientProtocol {
 
     private func createUrlRequest(baseUrl: String,
                                   path: String,
-                                  headers: [AnyHashable: Any],
+                                  headers: [String: String],
                                   queryParams: [String: String]) throws -> URLRequest {
         guard var components = URLComponents(string: baseUrl) else {
             let error = NSError(domain: Bundle.main.bundleIdentifier ?? "",
@@ -92,8 +96,8 @@ class RestaurantsApiClient: RestaurantsApiClientProtocol {
         if let url = components.url {
             var request  = URLRequest(url: url)
             request.httpMethod = "GET"
-            request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
-            request.setValue("Application/json", forHTTPHeaderField: "Content-type")
+            headers.forEach { request.setValue($0.value,
+                                               forHTTPHeaderField: $0.key) }
             return request
         } else {
             let error = NSError(domain: Bundle.main.bundleIdentifier ?? "",
