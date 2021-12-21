@@ -20,7 +20,9 @@
 		0B35FDD4277127090088BC00 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B35FDD3277127090088BC00 /* Restaurant.swift */; };
 		0B35FDD62771A7720088BC00 /* URLSession+jsonDecodableTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B35FDD52771A7720088BC00 /* URLSession+jsonDecodableTask.swift */; };
 		0B35FDD82771B00A0088BC00 /* BusinessesResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B35FDD72771B00A0088BC00 /* BusinessesResponseDTO.swift */; };
+		0B35FDDB2771B6010088BC00 /* RestaurantsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B35FDDA2771B6010088BC00 /* RestaurantsRepository.swift */; };
 		0B35FDE227724CF70088BC00 /* StorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B35FDE127724CF70088BC00 /* StorageProtocol.swift */; };
+		0B35FDE527724D0C0088BC00 /* FileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B35FDE427724D0C0088BC00 /* FileStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,7 +60,9 @@
 		0B35FDD3277127090088BC00 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		0B35FDD52771A7720088BC00 /* URLSession+jsonDecodableTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+jsonDecodableTask.swift"; sourceTree = "<group>"; };
 		0B35FDD72771B00A0088BC00 /* BusinessesResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessesResponseDTO.swift; sourceTree = "<group>"; };
+		0B35FDDA2771B6010088BC00 /* RestaurantsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsRepository.swift; sourceTree = "<group>"; };
 		0B35FDE127724CF70088BC00 /* StorageProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageProtocol.swift; sourceTree = "<group>"; };
+		0B35FDE427724D0C0088BC00 /* FileStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +169,16 @@
 			path = Response;
 			sourceTree = "<group>";
 		};
+		0B35FDD92771B5D40088BC00 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				0B35FDE627724E2E0088BC00 /* Persistence */,
+				0B35FDE027724CE80088BC00 /* Storage */,
+				0B35FDDA2771B6010088BC00 /* RestaurantsRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
 		0B35FDE027724CE80088BC00 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +186,14 @@
 				0B35FDE127724CF70088BC00 /* StorageProtocol.swift */,
 			);
 			path = Storage;
+			sourceTree = "<group>";
+		};
+		0B35FDE327724CFC0088BC00 /* FileStorage */ = {
+			isa = PBXGroup;
+			children = (
+				0B35FDE427724D0C0088BC00 /* FileStorage.swift */,
+			);
+			path = FileStorage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -306,7 +328,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B35FDD4277127090088BC00 /* Restaurant.swift in Sources */,
+				0B35FDE527724D0C0088BC00 /* FileStorage.swift in Sources */,
 				0B35FDD62771A7720088BC00 /* URLSession+jsonDecodableTask.swift in Sources */,
+				0B35FDDB2771B6010088BC00 /* RestaurantsRepository.swift in Sources */,
 				0B35FDD82771B00A0088BC00 /* BusinessesResponseDTO.swift in Sources */,
 				0B35FDA3277111AA0088BC00 /* RestaurantsViewController.swift in Sources */,
 				0B35FDD1277126C50088BC00 /* RestaurantsApiClient.swift in Sources */,
