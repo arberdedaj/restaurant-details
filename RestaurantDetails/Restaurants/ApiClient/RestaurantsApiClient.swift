@@ -32,14 +32,14 @@ class RestaurantsApiClient: RestaurantsApiClientProtocol {
                           latitude: Double,
                           longitude: Double,
                           completion: @escaping (Result<[Restaurant], Error>) -> Void) {
+        // setup http headers
+        let httpHeaders = setupHTTPHeaders(apiKey: apiKey,
+                                           contentType: "Application/json")
+        // setup query parameters
+        let queryParams = setupQueryParams(term: term,
+                                         latitude: latitude,
+                                         longitude: longitude)
         do {
-            // setup http headers
-            let httpHeaders = setupHTTPHeaders(apiKey: apiKey,
-                                               contentType: "Application/json")
-            // setup query parameters
-            let queryParams = setupQueryParams(term: term,
-                                             latitude: latitude,
-                                             longitude: longitude)
             // create url request
             let urlRequest = try createUrlRequest(baseUrl: baseUrl,
                                                   path: searchRestaurantsPath,
