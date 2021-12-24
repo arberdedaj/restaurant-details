@@ -11,17 +11,17 @@ protocol FavoritesPersistenceProtocol {
 
     /// Save restaurants in File storage
     /// - Parameters:
-    ///   - key: The key with which to associate the restaurants array.
-    ///   - restaurants: The restaurants array to be saved.
-    func saveRestaurants(key: String, restaurants: [Restaurant]) throws -> Bool
+    ///   - key: The key with which to associate the favorites array.
+    ///   - restaurants: The favorites array to be saved.
+    func saveFavorites(key: String, restaurants: [Restaurant]) throws -> Bool
 
-    /// Load restaurants from File storage
-    /// - Parameter key: The key with which to load the restaurants from.
-    func loadRestaurants(key: String) throws -> [Restaurant]?
+    /// Load favorites from File storage
+    /// - Parameter key: The key with which to load the favorites from.
+    func loadFavorites(key: String) throws -> [Restaurant]?
 
-    /// Delete restaurants from File storage
-    /// - Parameter key: The key with which to delete the restaurants from.
-    func deleteRestaurants(key: String) throws -> Bool
+    /// Delete favorites from File storage
+    /// - Parameter key: The key with which to delete the favorites from.
+    func deleteFavorites(key: String) throws -> Bool
 }
 
 class FavoritesPersistence: FavoritesPersistenceProtocol {
@@ -32,15 +32,15 @@ class FavoritesPersistence: FavoritesPersistenceProtocol {
         self.storage = storage
     }
 
-    func saveRestaurants(key: String, restaurants: [Restaurant]) throws -> Bool {
+    func saveFavorites(key: String, restaurants: [Restaurant]) throws -> Bool {
         return try storage.save(restaurants, for: key)
     }
     
-    func loadRestaurants(key: String) throws -> [Restaurant]? {
+    func loadFavorites(key: String) throws -> [Restaurant]? {
         return try storage.read([Restaurant].self, for: key)
     }
     
-    func deleteRestaurants(key: String) throws -> Bool {
+    func deleteFavorites(key: String) throws -> Bool {
         return try storage.delete(for: key)
     }
 }
