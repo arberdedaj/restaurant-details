@@ -15,34 +15,14 @@ protocol RestaurantsRepositoryProtocol {
                           longitude: Double,
                           limit: Int,
                           completion: @escaping (Result<[Restaurant], Error>) -> Void)
-    
-    /// Save the given restaurant as favorite
-    func addFavorite(restaurant: Restaurant,
-                     completion: ((Bool) -> Void))
-
-    // Remove the given restaurant from favorites
-    func removeFavorite(restaurant: Restaurant,
-                        completion: ((Bool) -> Void))
-    
-    /// Load persisted favorites from disk
-    func loadFavorites(completion: ([Restaurant]?) -> Void)
-    
-    /// Persist favorites on disk
-    func persistFavorites(_ restaurants: [Restaurant],
-                          completion: ((Bool) -> Void))
 }
 
 class RestaurantsRepository: RestaurantsRepositoryProtocol {
 
     private let apiClient: RestaurantsApiClientProtocol
-    private let restaurantsPersistence: RestaurantsPersistenceProtocol
 
-    private let restaurantsPersistenceKey = "restaurants-persistence-key"
-
-    required init(apiClient: RestaurantsApiClientProtocol,
-                  restaurantsPersistence: RestaurantsPersistenceProtocol) {
+    required init(apiClient: RestaurantsApiClientProtocol) {
         self.apiClient = apiClient
-        self.restaurantsPersistence = restaurantsPersistence
     }
 
     func fetchRestaurants(term: String,
@@ -78,68 +58,5 @@ class RestaurantsRepository: RestaurantsRepositoryProtocol {
         }
 
         return arraySlice
-    }
-    
-    func addFavorite(restaurant: Restaurant,
-                     completion: ((Bool) -> Void)) {
-        // load all existing favorites first
-        loadFavorites { restaurants in
-            var restaurants = restaurants
-            // if we have no persisted favorites yet,
-            // ensure we have an allocated array to work with
-            if restaurants == nil {
-                restaurants = []
-            }
-
-            // check if the given restaurant is already favorite
-            guard var restaurants = restaurants,
-            !restaurants.contains(where: { $0.id == restaurant.id }) else {
-                completion(false)
-                return
-            }
-
-            // append restaurant in the favorite restaurants array
-            restaurants.append(restaurant)
-
-            // persist favorite restaurants array
-            persistFavorites(restaurants) { result in
-                completion(result)
-            }
-        }
-    }
-    
-    func removeFavorite(restaurant: Restaurant,
-                        completion: ((Bool) -> Void)) {
-        loadFavorites { restaurants in
-            var restaurants = restaurants
-
-            // remove the given restaurant object from the favorite restaurants array
-            restaurants?.removeAll(where: { $0.id == restaurant.id })
-
-            // persist the modified favorites array
-            persistFavorites(restaurants ?? []) { result in
-                completion(result)
-            }
-        }
-    }
-    
-    func loadFavorites(completion: ([Restaurant]?) -> Void) {
-        do {
-            let restaurants = try restaurantsPersistence.loadRestaurants(key: restaurantsPersistenceKey)
-            completion(restaurants)
-        } catch {
-            completion(nil)
-        }
-    }
-    
-    func persistFavorites(_ restaurants: [Restaurant],
-                          completion: ((Bool) -> Void)) {
-        do {
-            let result = try restaurantsPersistence.saveRestaurants(key: restaurantsPersistenceKey,
-                                                                    restaurants: restaurants)
-            completion(result)
-        } catch {
-            completion(false)
-        }
     }
 }

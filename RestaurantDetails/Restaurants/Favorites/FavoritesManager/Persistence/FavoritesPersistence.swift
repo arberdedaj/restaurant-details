@@ -1,5 +1,5 @@
 //
-//  RestaurantsPersistence.swift
+//  FavoritesPersistence.swift
 //  RestaurantDetails
 //
 //  Created by Arber Dedaj on 21.12.21.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol RestaurantsPersistenceProtocol {
+protocol FavoritesPersistenceProtocol {
 
     /// Save restaurants in File storage
     /// - Parameters:
@@ -24,7 +24,7 @@ protocol RestaurantsPersistenceProtocol {
     func deleteRestaurants(key: String) throws -> Bool
 }
 
-class RestaurantsPersistence: RestaurantsPersistenceProtocol {
+class FavoritesPersistence: FavoritesPersistenceProtocol {
 
     private let storage: StorageProtocol
 

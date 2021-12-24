@@ -102,6 +102,9 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Anc-LY-648"/>
                                     <barButtonItem title="Item" image="favorites-toolbar-icon" id="wQd-sa-6p4">
                                         <color key="tintColor" systemColor="labelColor"/>
+                                        <connections>
+                                            <action selector="favoritesButtonTapped:" destination="BYZ-38-t0r" id="SNb-3w-wKC"/>
+                                        </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>

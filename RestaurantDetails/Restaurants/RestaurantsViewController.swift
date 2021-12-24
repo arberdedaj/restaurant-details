@@ -41,10 +41,7 @@ class RestaurantsViewController: UIViewController,
         collectionView.keyboardDismissMode = .onDrag
 
         let apiClient = RestaurantsApiClient(apiKey: apiKey)
-        let fileStorage = FileStorage()
-        let restaurantsPersistence = RestaurantsPersistence(storage: fileStorage)
-        restaurantsRepository = RestaurantsRepository(apiClient: apiClient,
-                                                      restaurantsPersistence: restaurantsPersistence)
+        restaurantsRepository = RestaurantsRepository(apiClient: apiClient)
     }
 
     // MARK: UISearchBarDelegate
@@ -179,17 +176,21 @@ class RestaurantsViewController: UIViewController,
     }
 
     private func setupSortingActionSheet() -> UIAlertController {
-        let actionSheet = UIAlertController(title: "Sort by restaurant name", message: nil, preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: "Sort by restaurant name",
+                                            message: nil,
+                                            preferredStyle: .actionSheet)
         actionSheet.view.tintColor = .gray
 
-        let ascendingAction = UIAlertAction(title: "Ascending", style: .default) { [weak self] action in
+        let ascendingAction = UIAlertAction(title: "Ascending",
+                                            style: .default) { [weak self] action in
             self?.restaurants = self?.restaurants?.sorted(by: { $0.name ?? "" < $1.name ?? "" })
             self?.updateView()
         }
         
         actionSheet.addAction(ascendingAction)
 
-        let descendingAction = UIAlertAction(title: "Descending", style: .default) { [weak self] action in
+        let descendingAction = UIAlertAction(title: "Descending",
+                                             style: .default) { [weak self] action in
             self?.restaurants = self?.restaurants?.sorted(by: { $0.name ?? "" > $1.name ?? "" })
             self?.updateView()
         }
@@ -199,6 +200,13 @@ class RestaurantsViewController: UIViewController,
         actionSheet.addAction(cancelAction)
         
         return actionSheet
+    }
+
+    @IBAction func favoritesButtonTapped(_ sender: Any) {
+        let favoritesViewController = FavoritesViewController()
+        favoritesViewController.favorites = restaurants
+        navigationController?.pushViewController(favoritesViewController,
+                                                 animated: true)
     }
 
     // MARK: UICollectionViewDataSource
