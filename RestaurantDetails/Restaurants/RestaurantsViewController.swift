@@ -34,6 +34,7 @@ class RestaurantsViewController: UIViewController,
         navigationItem.titleView = searchBar
         searchBar.delegate = self
         searchBar.becomeFirstResponder()
+        searchBar.tintColor = .darkGray
 
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -97,6 +98,10 @@ class RestaurantsViewController: UIViewController,
             restaurants = []
             updateView()
         }
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
 
     // MARK: Private
