@@ -33,6 +33,7 @@ class RestaurantsViewController: UIViewController,
 
         navigationItem.titleView = searchBar
         searchBar.delegate = self
+        searchBar.becomeFirstResponder()
 
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -60,7 +61,10 @@ class RestaurantsViewController: UIViewController,
                          latitude: 37.786882, // pass a dummy latitude & longitude for now
                          longitude: -122.399972, // pass a dummy latitude & longitude for now
                          limit: limit) { [weak self] result in
+            // remove loading view
             self?.dismissLoadingView()
+            // dismiss keyboard
+            self?.searchBar.resignFirstResponder()
             switch result {
             case .success(let restaurants):
                 if restaurants.isEmpty {
@@ -165,7 +169,31 @@ class RestaurantsViewController: UIViewController,
     }
 
     @IBAction func sortButtonTapped(_ sender: UIBarButtonItem) {
-        // TODO: implement
+        let actionSheet = setupSortingActionSheet()
+        present(actionSheet, animated: true, completion: nil)
+    }
+
+    private func setupSortingActionSheet() -> UIAlertController {
+        let actionSheet = UIAlertController(title: "Sort by restaurant name", message: nil, preferredStyle: .actionSheet)
+        actionSheet.view.tintColor = .gray
+
+        let ascendingAction = UIAlertAction(title: "Ascending", style: .default) { [weak self] action in
+            self?.restaurants = self?.restaurants?.sorted(by: { $0.name ?? "" < $1.name ?? "" })
+            self?.updateView()
+        }
+        
+        actionSheet.addAction(ascendingAction)
+
+        let descendingAction = UIAlertAction(title: "Descending", style: .default) { [weak self] action in
+            self?.restaurants = self?.restaurants?.sorted(by: { $0.name ?? "" > $1.name ?? "" })
+            self?.updateView()
+        }
+        actionSheet.addAction(descendingAction)
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in }
+        actionSheet.addAction(cancelAction)
+        
+        return actionSheet
     }
 
     // MARK: UICollectionViewDataSource
