@@ -42,7 +42,8 @@ class RestaurantsNoDataView: UIView {
                                             superView: UIView) -> [NSLayoutConstraint] {
         return [titleLabel.leadingAnchor.constraint(equalTo: superView.leadingAnchor, constant: 16),
                 titleLabel.topAnchor.constraint(equalTo: superView.topAnchor, constant: 32),
-                titleLabel.trailingAnchor.constraint(equalTo: superView.trailingAnchor, constant: -62)]
+                titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: superView.trailingAnchor,
+                                                     constant: -16)]
     }
 
     private func setupDescriptionLabelConstraints(_ descriptionLabel: UILabel,
@@ -50,7 +51,8 @@ class RestaurantsNoDataView: UIView {
                                                   topView titleLabel: UILabel) -> [NSLayoutConstraint] {
         return [descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
                 descriptionLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-                descriptionLabel.trailingAnchor.constraint(equalTo: superView.trailingAnchor, constant: -32),
+                descriptionLabel.trailingAnchor.constraint(lessThanOrEqualTo: superView.trailingAnchor,
+                                                           constant: -16),
                 ]
     }
 
