@@ -36,20 +36,57 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jwV-o9-Nvi">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sKg-23-ZFI">
-                                    <size key="itemSize" width="128" height="128"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="16" id="sKg-23-ZFI">
+                                    <size key="itemSize" width="150" height="150"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="16" minY="10" maxX="16" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="fR8-gu-PvJ">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="restaurantCellId" id="fR8-gu-PvJ" customClass="RestaurantCollectionViewCell" customModule="RestaurantDetails" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="10" width="150" height="150"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="7XO-Jm-iKa">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7d9-nC-IhX">
+                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="77"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="120" id="v8N-8V-rri"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Hd-hP-IwI">
+                                                    <rect key="frame" x="0.0" y="85" width="45.5" height="25"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ojh-tq-oVM">
+                                                    <rect key="frame" x="0.0" y="113" width="40.5" height="22"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="ojh-tq-oVM" secondAttribute="bottom" constant="15" id="Fgu-QP-TFL"/>
+                                                <constraint firstAttribute="trailing" secondItem="7d9-nC-IhX" secondAttribute="trailing" id="OGj-NA-xdI"/>
+                                                <constraint firstItem="ojh-tq-oVM" firstAttribute="top" secondItem="9Hd-hP-IwI" secondAttribute="bottom" constant="3" id="OrT-P7-k9O"/>
+                                                <constraint firstItem="9Hd-hP-IwI" firstAttribute="top" secondItem="7d9-nC-IhX" secondAttribute="bottom" constant="8" symbolic="YES" id="VS2-3F-DTZ"/>
+                                                <constraint firstItem="7d9-nC-IhX" firstAttribute="leading" secondItem="7XO-Jm-iKa" secondAttribute="leading" id="YuN-KE-pwo"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ojh-tq-oVM" secondAttribute="trailing" constant="10" id="aTG-UV-xi0"/>
+                                                <constraint firstItem="9Hd-hP-IwI" firstAttribute="leading" secondItem="7XO-Jm-iKa" secondAttribute="leading" id="kxK-vR-7Ga"/>
+                                                <constraint firstItem="ojh-tq-oVM" firstAttribute="leading" secondItem="7XO-Jm-iKa" secondAttribute="leading" id="n01-J6-SMh"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="9Hd-hP-IwI" secondAttribute="trailing" constant="10" id="pZE-TE-ys6"/>
+                                                <constraint firstItem="7d9-nC-IhX" firstAttribute="top" secondItem="7XO-Jm-iKa" secondAttribute="top" id="vKt-DW-F6G"/>
+                                            </constraints>
                                         </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="addressLabel" destination="ojh-tq-oVM" id="jJB-KM-f06"/>
+                                            <outlet property="imageView" destination="7d9-nC-IhX" id="73D-4e-ln3"/>
+                                            <outlet property="nameLabel" destination="9Hd-hP-IwI" id="yjm-bY-zRM"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -91,7 +128,7 @@
                 <searchBar contentMode="redraw" placeholder="Search a Restaurant" id="FWE-hd-nxK">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                 </searchBar>
             </objects>
             <point key="canvasLocation" x="-681.15942028985512" y="-2.0089285714285712"/>

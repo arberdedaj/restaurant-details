@@ -37,8 +37,8 @@ class RestaurantsApiClient: RestaurantsApiClientProtocol {
                                            contentType: "Application/json")
         // setup query parameters
         let queryParams = setupQueryParams(term: term,
-                                         latitude: latitude,
-                                         longitude: longitude)
+                                           latitude: latitude,
+                                           longitude: longitude)
         do {
             // create url request
             let urlRequest = try createUrlRequest(baseUrl: baseUrl,

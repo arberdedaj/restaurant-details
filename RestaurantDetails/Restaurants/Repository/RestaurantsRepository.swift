@@ -13,6 +13,7 @@ protocol RestaurantsRepositoryProtocol {
     func fetchRestaurants(term: String,
                           latitude: Double,
                           longitude: Double,
+                          limit: Int,
                           completion: @escaping (Result<[Restaurant], Error>) -> Void)
     
     /// Save the given restaurant as favorite
@@ -47,11 +48,36 @@ class RestaurantsRepository: RestaurantsRepositoryProtocol {
     func fetchRestaurants(term: String,
                           latitude: Double,
                           longitude: Double,
+                          limit: Int,
                           completion: @escaping (Result<[Restaurant], Error>) -> Void) {
         apiClient.fetchRestaurants(term: term,
                                    latitude: latitude,
-                                   longitude: longitude,
-                                   completion: completion)
+                                   longitude: longitude) { [weak self] result in
+            switch result {
+            case .success(let restaurants):
+                // filter only the array members so as not to exceed the limit
+                let filteredArray = self?.getFirstNElements(limit, in: restaurants) ?? []
+                completion(.success(filteredArray))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    private func getFirstNElements(_ n: Int, in array: [Restaurant]) -> [Restaurant] {
+        guard array.count >= n else {
+            // if array is less in length compared to the limit then return the complete array
+            return array
+        }
+
+        var arraySlice: [Restaurant] = []
+        for i in 0 ..< n {
+            // fill the new array with elements from the given array,
+            // making sure we do not exceed the limit
+            arraySlice.append(array[i])
+        }
+
+        return arraySlice
     }
     
     func addFavorite(restaurant: Restaurant,
