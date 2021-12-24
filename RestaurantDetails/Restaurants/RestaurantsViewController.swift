@@ -197,12 +197,17 @@ class RestaurantsViewController: UIViewController,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         guard let layout = collectionViewLayout as? UICollectionViewFlowLayout else {
+            // fallback to a square cell
             return CGSize(width: 200, height: 200)
         }
-    
+
+        // define number of columns in grid view
         let cellsPerRow = 2
+        // take into calculation the collection view section insets
         let insets = layout.sectionInset
+        // take into calculation the spacing between cell items
         let marginsAndInsets = insets.left + insets.right + layout.minimumInteritemSpacing * CGFloat(Float(cellsPerRow - 1)) + collectionView.contentInset.left + collectionView.contentInset.right
+        // get the item width which ensures we have always 2 elements per row (in different screen sizes)
         let itemWidth = (collectionView.frame.width - marginsAndInsets) / CGFloat(cellsPerRow)
         return CGSize(width: itemWidth, height: 220)
     }
