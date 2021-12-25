@@ -61,6 +61,15 @@ class FavoritesManager {
             }
         }
     }
+
+    func isFavorite(restaurant: Restaurant) -> Bool {
+        do {
+            let restaurants = try favoritesPersistence.loadFavorites(key: favoritesPersistenceKey)
+            return restaurants?.contains { $0.id == restaurant.id } ?? false
+        } catch {
+            return false
+        }
+    }
     
     /// Load persisted favorites from disk
     func loadFavorites(completion: ([Restaurant]?) -> Void) {

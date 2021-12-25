@@ -215,6 +215,16 @@ class RestaurantsViewController: UIViewController,
                                                  animated: true)
     }
 
+    // MARK: UICollectionViewDelegate
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let restaurant = restaurants?[indexPath.row] {
+            // navigate to restaurant detail screen
+            let restaurantDetailViewController = RestaurantDetailViewController(restaurant: restaurant)
+            navigationController?.pushViewController(restaurantDetailViewController, animated: true)
+        }
+    }
+
     // MARK: UICollectionViewDataSource
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
