@@ -102,8 +102,21 @@ class RestaurantsViewController: UIViewController,
         }
     }
 
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        // show cancel button with animation
+        searchBar.setShowsCancelButton(true, animated: true)
+    }
+
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        // hide cancel button with animation
+        searchBar.setShowsCancelButton(false, animated: true)
+    }
+
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
+        // dismiss keyboard
+        searchBar.endEditing(true)
+        // hide cancel button with animation
+        searchBar.setShowsCancelButton(false, animated: true)
     }
 
     // MARK: Private
