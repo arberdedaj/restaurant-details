@@ -21,6 +21,8 @@ class RestaurantDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = restaurant.name
+
         // setup Favorites manager
         let favoritesPersistence = FavoritesPersistence(storage: FileStorage())
         favoritesManager = FavoritesManager(favoritesPersistence: favoritesPersistence)
