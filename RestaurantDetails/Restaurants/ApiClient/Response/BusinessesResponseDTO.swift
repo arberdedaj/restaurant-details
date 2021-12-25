@@ -8,5 +8,5 @@
 import Foundation
 
 class BusinessesResponseDTO: Codable {
-    let businesses: [Restaurant]
+    let businesses: [Restaurant]?
 }

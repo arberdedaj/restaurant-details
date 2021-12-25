@@ -12,9 +12,11 @@ class Restaurant: Codable {
     let name: String?
     let imageUrl: String?
     let location: RestaurantLocation?
+    let rating: Double?
+    let photos: [String]?
 
     enum CodingKeys: String, CodingKey {
-        case id, name, location
+        case id, name, location, rating, photos
         case imageUrl = "image_url"
     }
 }

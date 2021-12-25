@@ -229,7 +229,7 @@ class RestaurantsViewController: UIViewController,
     }
 
     @IBAction func favoritesButtonTapped(_ sender: Any) {
-        let favoritesViewController = FavoritesViewController()
+        let favoritesViewController = FavoritesViewController(restaurantsRepository: restaurantsRepository)
         navigationController?.pushViewController(favoritesViewController,
                                                  animated: true)
     }
@@ -239,7 +239,8 @@ class RestaurantsViewController: UIViewController,
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let restaurant = restaurants?[indexPath.row] {
             // navigate to restaurant detail screen
-            let restaurantDetailViewController = RestaurantDetailViewController(restaurant: restaurant)
+            let restaurantDetailViewController = RestaurantDetailViewController(restaurant: restaurant,
+                                                                                restaurantsRepository: restaurantsRepository)
             navigationController?.pushViewController(restaurantDetailViewController, animated: true)
         }
     }
@@ -258,7 +259,7 @@ class RestaurantsViewController: UIViewController,
             // set name label text
             cell.nameLabel.text = restaurant.name ?? "-"
             // set address label text
-            cell.addressLabel.text = getFormattedRestaurantAddress(restaurant) ?? "-"
+            cell.addressLabel.text = RestaurantUtils.getFormattedRestaurantAddress(restaurant) ?? "-"
 
             if let imageUrlString = restaurant.imageUrl,
                let imageUrl = URL(string: imageUrlString) {
@@ -307,15 +308,6 @@ class RestaurantsViewController: UIViewController,
     }
 
     // MARK: Helpers
-
-    private func getFormattedRestaurantAddress(_ restaurant: Restaurant) -> String? {
-        guard let displayAddress = restaurant.location?.displayAddress,
-              displayAddress.count >= 2 else {
-                  return nil
-        }
-
-        return "\(displayAddress[0]), \(displayAddress[1])"
-    }
 
     private func presentSimpleAlert(title: String = "RestaurantDetails",
                                     message: String,

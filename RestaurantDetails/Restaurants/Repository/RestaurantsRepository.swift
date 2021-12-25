@@ -15,6 +15,14 @@ protocol RestaurantsRepositoryProtocol {
                           longitude: Double,
                           limit: Int,
                           completion: @escaping (Result<[Restaurant], Error>) -> Void)
+    
+    /// Fetch restaurant details for the given id.
+    func fetchRestaurantDetails(id: String,
+                                completion: @escaping (Result<Restaurant, Error>) -> Void)
+    
+    /// Fetch reviews for the given restaurant id.
+    func fetchRestaurantReviews(id: String,
+                                completion: @escaping (Result<[RestaurantReview], Error>) -> Void)
 }
 
 class RestaurantsRepository: RestaurantsRepositoryProtocol {
@@ -42,6 +50,16 @@ class RestaurantsRepository: RestaurantsRepositoryProtocol {
                 completion(.failure(error))
             }
         }
+    }
+
+    func fetchRestaurantDetails(id: String,
+                                completion: @escaping (Result<Restaurant, Error>) -> Void) {
+        apiClient.fetchRestaurantDetails(id: id, completion: completion)
+    }
+
+    func fetchRestaurantReviews(id: String,
+                                completion: @escaping (Result<[RestaurantReview], Error>) -> Void) {
+        apiClient.fetchRestaurantReviews(id: id, completion: completion)
     }
 
     private func getFirstNElements(_ n: Int, in array: [Restaurant]) -> [Restaurant] {

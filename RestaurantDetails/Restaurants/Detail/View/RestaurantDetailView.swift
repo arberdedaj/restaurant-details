@@ -10,6 +10,9 @@ import UIKit
 protocol RestaurantDetailViewDelegate: AnyObject {
     func getNumberOfSections() -> Int
     func getNumberOfRows(in section: Int) -> Int
+    func getTitleForHeader(in section: Int) -> String?
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell
 }
 
 class RestaurantDetailView: UIView, UITableViewDelegate, UITableViewDataSource {
@@ -39,9 +42,19 @@ class RestaurantDetailView: UIView, UITableViewDelegate, UITableViewDataSource {
 
     // MARK: Public
 
-    func getHeaderImageView() -> UIImageView {
-        return tableViewHeader.imageView
+    func reloadData() {
+        tableView.reloadData()
     }
+
+    func getHeaderImageView() -> UIImageView {
+        return tableViewHeader.coverImageView
+    }
+
+    func setImageUrls(_ urls: [String]) {
+        tableViewHeader.setImageUrls(urls)
+    }
+
+    // MARK: Private
 
     private func setupTableView(delegate: UITableViewDelegate,
                                 dataSource: UITableViewDataSource) -> UITableView {
@@ -50,6 +63,12 @@ class RestaurantDetailView: UIView, UITableViewDelegate, UITableViewDataSource {
         tableView.dataSource = dataSource
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.tableFooterView = UIView()
+        tableView.register(RestaurantInfoTableViewCell.self,
+                           forCellReuseIdentifier: String(describing: RestaurantInfoTableViewCell.self))
+        tableView.register(ReviewTableViewCell.self,
+                           forCellReuseIdentifier: String(describing: ReviewTableViewCell.self))
+        tableView.register(RestaurantDetailHelperTableViewCell.self,
+                           forCellReuseIdentifier: String(describing: RestaurantDetailHelperTableViewCell.self))
         return tableView
     }
 
@@ -57,7 +76,7 @@ class RestaurantDetailView: UIView, UITableViewDelegate, UITableViewDataSource {
         return RestaurantTableViewHeader(frame: CGRect(x: 0,
                                                        y: 0,
                                                        width: tableView.frame.width,
-                                                       height: 250))
+                                                       height: 320))
     }
 
     private func setupTableViewConstraints(_ tableView: UITableView,
@@ -66,6 +85,20 @@ class RestaurantDetailView: UIView, UITableViewDelegate, UITableViewDataSource {
                 tableView.topAnchor.constraint(equalTo: superView.safeAreaLayoutGuide.topAnchor),
                 tableView.trailingAnchor.constraint(equalTo: superView.trailingAnchor),
                 tableView.bottomAnchor.constraint(equalTo: superView.bottomAnchor)]
+    }
+
+    // MARK: UITableViewDelegate
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return delegate?.getTitleForHeader(in: section)
     }
 
     // MARK: UITableViewDataSource
@@ -79,7 +112,7 @@ class RestaurantDetailView: UIView, UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        UITableViewCell()
+        return delegate?.tableView(tableView, cellForRowAt: indexPath) ?? UITableViewCell()
     }
 
     required init?(coder: NSCoder) {

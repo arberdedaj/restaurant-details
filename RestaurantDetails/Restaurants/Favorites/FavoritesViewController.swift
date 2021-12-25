@@ -13,6 +13,13 @@ class FavoritesViewController: UIViewController, FavoritesViewDelegate {
 
     private var favoritesManager: FavoritesManager!
 
+    private let restaurantsRepository: RestaurantsRepositoryProtocol
+
+    required init(restaurantsRepository: RestaurantsRepositoryProtocol) {
+        self.restaurantsRepository = restaurantsRepository
+        super.init(nibName: nil, bundle: nil)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -86,7 +93,7 @@ class FavoritesViewController: UIViewController, FavoritesViewDelegate {
             return nil
         }
 
-        return getFormattedRestaurantAddress(favorites[index])
+        return RestaurantUtils.getFormattedRestaurantAddress(favorites[index])
     }
     
     func isItemFavorite(at index: Int) -> Bool {
@@ -101,19 +108,13 @@ class FavoritesViewController: UIViewController, FavoritesViewDelegate {
         let favorite = favorites[index]
 
         // navigate to detail screen
-        let favoriteDetailViewController = RestaurantDetailViewController(restaurant: favorite)
+        let favoriteDetailViewController = RestaurantDetailViewController(restaurant: favorite,
+                                                                          restaurantsRepository: restaurantsRepository)
         navigationController?.pushViewController(favoriteDetailViewController, animated: true)
     }
 
-    // MARK: Helpers
-
-    private func getFormattedRestaurantAddress(_ restaurant: Restaurant) -> String? {
-        guard let displayAddress = restaurant.location?.displayAddress,
-              displayAddress.count >= 2 else {
-                  return nil
-        }
-
-        return "\(displayAddress[0]), \(displayAddress[1])"
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     deinit {
