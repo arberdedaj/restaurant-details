@@ -43,8 +43,10 @@ class FavoritesView: UIView, UITableViewDelegate, UITableViewDataSource {
 
     func showNoDataView() {
         guard noDataView == nil else { return }
-        noDataView = setupNoDataView(title: "You don't have any favorite restaurant",
-                                         description: "To create a favorite, search for a restaurant you like and you can make it a favorite by clicking on the star button in the details screen.")
+        noDataView = setupNoDataView(title: "You don't have any favorites",
+                                     description: "To create a favorite, search for a restaurant" +
+                                     " and you can make it a favorite by clicking on the star button" +
+                                     " in the details screen.")
         addSubview(noDataView!)
         
         let noDataViewConstraints = setupNoDataViewConstraints(noDataView!,
@@ -117,14 +119,19 @@ class FavoritesView: UIView, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: FavoritesTableViewCell.self)) as! FavoritesTableViewCell
 
+        // set name label text
         cell.favoriteNameLabel.text = delegate?.getTitleForItem(at: indexPath.row) ?? "-"
+        // set address label text
         cell.favoriteAddressLabel.text = delegate?.getDescriptionForItem(at: indexPath.row) ?? "-"
 
+        // get the image url
         if let urlString = delegate?.getImageUrlStringForItem(at: indexPath.row),
             let url = URL(string: urlString) {
+            // load the image from server and set it in the image view
             cell.favoriteImageView?.sd_setImage(with: url,
                                                 placeholderImage: UIImage(named: "restaurant-item-placeholder"))
         } else {
+            // add a placeholder image
             cell.favoriteImageView?.image = UIImage(named: "restaurant-item-placeholder")
         }
 

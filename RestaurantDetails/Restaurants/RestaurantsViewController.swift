@@ -31,15 +31,20 @@ class RestaurantsViewController: UIViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // add seach bar in the title view
         navigationItem.titleView = searchBar
+
+        // setup search bar
         searchBar.delegate = self
         searchBar.becomeFirstResponder()
         searchBar.tintColor = .darkGray
 
+        // setup collection view
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.keyboardDismissMode = .onDrag
 
+        // setup api client and repository
         let apiClient = RestaurantsApiClient(apiKey: apiKey)
         restaurantsRepository = RestaurantsRepository(apiClient: apiClient)
     }
@@ -111,7 +116,7 @@ class RestaurantsViewController: UIViewController,
         restaurantsRepository.fetchRestaurants(term: searchKeyword,
                                                latitude: latitude,
                                                longitude: longitude,
-                                               limit: 10,
+                                               limit: limit,
                                                completion: completion)
     }
 
@@ -183,6 +188,7 @@ class RestaurantsViewController: UIViewController,
 
         let ascendingAction = UIAlertAction(title: "Ascending",
                                             style: .default) { [weak self] action in
+            // sort restaurants by name - ascending
             self?.restaurants = self?.restaurants?.sorted(by: { $0.name ?? "" < $1.name ?? "" })
             self?.updateView()
         }
@@ -191,6 +197,7 @@ class RestaurantsViewController: UIViewController,
 
         let descendingAction = UIAlertAction(title: "Descending",
                                              style: .default) { [weak self] action in
+            // sort restaurants by name - descending
             self?.restaurants = self?.restaurants?.sorted(by: { $0.name ?? "" > $1.name ?? "" })
             self?.updateView()
         }
@@ -204,7 +211,6 @@ class RestaurantsViewController: UIViewController,
 
     @IBAction func favoritesButtonTapped(_ sender: Any) {
         let favoritesViewController = FavoritesViewController()
-        favoritesViewController.favorites = restaurants
         navigationController?.pushViewController(favoritesViewController,
                                                  animated: true)
     }
@@ -220,12 +226,16 @@ class RestaurantsViewController: UIViewController,
                                                       for: indexPath) as! RestaurantCollectionViewCell
         
         if let restaurant = restaurants?[indexPath.row] {
+            // set name label text
             cell.nameLabel.text = restaurant.name ?? "-"
+            // set address label text
             cell.addressLabel.text = getFormattedRestaurantAddress(restaurant) ?? "-"
 
             if let imageUrlString = restaurant.imageUrl,
                let imageUrl = URL(string: imageUrlString) {
-                cell.imageView.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "restaurant-item-placeholder"))
+                // load image from server and set it in the image view
+                cell.imageView.sd_setImage(with: imageUrl,
+                                           placeholderImage: UIImage(named: "restaurant-item-placeholder"))
             }
         }
         
@@ -254,10 +264,12 @@ class RestaurantsViewController: UIViewController,
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        // set spacing between columns
         return 16
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        // set spacing between rows
         return 16
     }
     

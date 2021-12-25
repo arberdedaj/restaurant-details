@@ -9,7 +9,7 @@ import UIKit
 
 class FavoritesViewController: UIViewController, FavoritesViewDelegate {
 
-    var favorites: [Restaurant]? = []
+    private var favorites: [Restaurant]? = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,9 +19,10 @@ class FavoritesViewController: UIViewController, FavoritesViewDelegate {
         let fileStorage = FileStorage()
         let favoritesPersistence = FavoritesPersistence(storage: fileStorage)
         let favoritesManager = FavoritesManager(favoritesPersistence: favoritesPersistence)
+
+        // load favorites
         favoritesManager.loadFavorites { [weak self] favorites in
             self?.favorites = favorites
-
             if let favorites = favorites, !favorites.isEmpty {
                 // remove no data view if needed
                 (view as? FavoritesView)?.removeNoDataView()
@@ -34,6 +35,7 @@ class FavoritesViewController: UIViewController, FavoritesViewDelegate {
     }
 
     override func loadView() {
+        // replace ViewController's view with FavoritesView
         view = FavoritesView()
         (view as? FavoritesView)?.delegate = self
     }
