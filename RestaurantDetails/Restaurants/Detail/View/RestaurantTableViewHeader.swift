@@ -26,7 +26,8 @@ class RestaurantTableViewHeader: UIView {
 
     private func setupImageView() -> UIImageView {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleToFill
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }
