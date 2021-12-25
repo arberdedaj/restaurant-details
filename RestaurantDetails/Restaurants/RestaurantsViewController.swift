@@ -49,6 +49,12 @@ class RestaurantsViewController: UIViewController,
         restaurantsRepository = RestaurantsRepository(apiClient: apiClient)
     }
 
+    override func viewWillTransition(to size: CGSize,
+                                     with coordinator: UIViewControllerTransitionCoordinator) {
+        // make sure grid view items are sized properly on screen rotation
+        collectionView.collectionViewLayout.invalidateLayout()
+    }
+
     // MARK: UISearchBarDelegate
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
