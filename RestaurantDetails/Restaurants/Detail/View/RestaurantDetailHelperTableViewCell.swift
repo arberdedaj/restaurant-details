@@ -24,6 +24,8 @@ class RestaurantDetailHelperTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+        selectionStyle = .none
         
         separatorView = UIView()
         separatorView.isHidden = isSeparatorHidden
@@ -71,7 +73,7 @@ class RestaurantDetailHelperTableViewCell: UITableViewCell {
             addSubview(errorMessageLabel!)
             
             retryButton = UIButton(type: .system)
-            retryButton?.tintColor = .darkGray
+            retryButton?.tintColor = .black
             retryButton?.setTitle("Retry", for: .normal)
             retryButton?.addTarget(self, action: #selector(retryButtonTapped), for: .touchUpInside)
             addSubview(retryButton!)
