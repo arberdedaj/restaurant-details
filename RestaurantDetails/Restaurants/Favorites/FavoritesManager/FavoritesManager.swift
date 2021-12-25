@@ -46,7 +46,7 @@ class FavoritesManager {
         }
     }
 
-    // Remove the given restaurant from favorites
+    /// Remove the given restaurant from favorites
     func removeFavorite(restaurant: Restaurant,
                         completion: ((Bool) -> Void)) {
         loadFavorites { restaurants in
@@ -62,6 +62,7 @@ class FavoritesManager {
         }
     }
 
+    /// Returns true if restaurant is favorite, otherwise false.
     func isFavorite(restaurant: Restaurant) -> Bool {
         do {
             let restaurants = try favoritesPersistence.loadFavorites(key: favoritesPersistenceKey)
