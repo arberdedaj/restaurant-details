@@ -73,7 +73,7 @@ class FavoritesViewController: UIViewController, FavoritesViewDelegate {
     }
     
     func getImageUrlStringForItem(at index: Int) -> String? {
-        guard let favorites = favorites, favorites.count - 1 >= index else {
+        guard let favorites = favorites, index <= favorites.count - 1 else {
             return nil
         }
 
@@ -81,7 +81,7 @@ class FavoritesViewController: UIViewController, FavoritesViewDelegate {
     }
     
     func getTitleForItem(at index: Int) -> String? {
-        guard let favorites = favorites, favorites.count - 1 >= index else {
+        guard let favorites = favorites, index <= favorites.count - 1 else {
             return nil
         }
 
@@ -89,7 +89,7 @@ class FavoritesViewController: UIViewController, FavoritesViewDelegate {
     }
     
     func getDescriptionForItem(at index: Int) -> String? {
-        guard let favorites = favorites, favorites.count - 1 >= index else {
+        guard let favorites = favorites, index <= favorites.count - 1 else {
             return nil
         }
 
@@ -101,7 +101,7 @@ class FavoritesViewController: UIViewController, FavoritesViewDelegate {
     }
 
     func onItemViewSelected(at index: Int) {
-        guard let favorites = favorites, favorites.count - 1 >= index else {
+        guard let favorites = favorites, index <= favorites.count - 1  else {
             return
         }
 
