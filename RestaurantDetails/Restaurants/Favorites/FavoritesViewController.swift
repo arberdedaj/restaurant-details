@@ -75,7 +75,15 @@ class FavoritesViewController: UIViewController, FavoritesViewDelegate {
     }
 
     func onItemViewSelected(at index: Int) {
-        // TODO: navigate to detail screen
+        guard let favorites = favorites, favorites.count - 1 >= index else {
+            return
+        }
+
+        let favorite = favorites[index]
+
+        // navigate to detail screen
+        let favoriteDetailViewController = RestaurantDetailViewController(restaurant: favorite)
+        navigationController?.pushViewController(favoriteDetailViewController, animated: true)
     }
 
     // MARK: Helpers
