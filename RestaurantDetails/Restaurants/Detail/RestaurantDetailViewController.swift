@@ -60,6 +60,7 @@ class RestaurantDetailViewController: UIViewController {
         let isFavorite = favoritesManager.isFavorite(restaurant: restaurant)
 
         if isFavorite {
+            // if it is favorite, remove it from favorites
             favoritesManager.removeFavorite(restaurant: restaurant) { result in
                 if result {
                     // update favorite bar button item if the favorite was removed successfully
@@ -67,6 +68,7 @@ class RestaurantDetailViewController: UIViewController {
                 }
             }
         } else {
+            // if it is not favorite, add it in favorites
             favoritesManager.addFavorite(restaurant: restaurant) { result in
                 if result {
                     // update favorite bar button item if the favorite was added successfully
