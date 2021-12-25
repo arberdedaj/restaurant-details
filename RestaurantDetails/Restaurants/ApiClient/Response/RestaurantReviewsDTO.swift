@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+class RestaurantReviewsDTO: Codable {
+    let reviews: [RestaurantReview]?
+}
