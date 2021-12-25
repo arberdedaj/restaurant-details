@@ -11,6 +11,8 @@ class FavoritesViewController: UIViewController, FavoritesViewDelegate {
 
     private var favorites: [Restaurant]? = []
 
+    private var favoritesManager: FavoritesManager!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,8 +20,23 @@ class FavoritesViewController: UIViewController, FavoritesViewDelegate {
 
         let fileStorage = FileStorage()
         let favoritesPersistence = FavoritesPersistence(storage: fileStorage)
-        let favoritesManager = FavoritesManager(favoritesPersistence: favoritesPersistence)
+        favoritesManager = FavoritesManager(favoritesPersistence: favoritesPersistence)
 
+        // load favorites and update view
+        refreshFavoritesList(completion: nil)
+
+        // observe favorites list updates
+        NotificationCenter.default.addObserver(forName: FavoritesManager.favoritesListChangedNotification,
+                                               object: nil,
+                                               queue: nil) { [weak self] _ in
+            // reload data
+            self?.refreshFavoritesList(completion: nil)
+        }
+    }
+    
+    /// Loads the favorites from FavoritesManager and updates the view accordingly.
+    /// - Parameter completion: completion handler.
+    private func refreshFavoritesList(completion: (() -> Void)?) {
         // load favorites
         favoritesManager.loadFavorites { [weak self] favorites in
             self?.favorites = favorites
@@ -31,6 +48,8 @@ class FavoritesViewController: UIViewController, FavoritesViewDelegate {
             } else {
                 (view as? FavoritesView)?.showNoDataView()
             }
+            // call completion handler
+            completion?()
         }
     }
 
@@ -95,5 +114,11 @@ class FavoritesViewController: UIViewController, FavoritesViewDelegate {
         }
 
         return "\(displayAddress[0]), \(displayAddress[1])"
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self,
+                                                  name: FavoritesManager.favoritesListChangedNotification,
+                                                  object: nil)
     }
 }

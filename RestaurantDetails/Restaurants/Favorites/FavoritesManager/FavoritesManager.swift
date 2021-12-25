@@ -9,6 +9,8 @@ import Foundation
 
 class FavoritesManager {
 
+    static let favoritesListChangedNotification = Notification.Name("favoritesListChanged")
+
     private let favoritesPersistence: FavoritesPersistenceProtocol
 
     private let favoritesPersistenceKey = "favorites-persistence-key"
@@ -42,6 +44,9 @@ class FavoritesManager {
             // persist favorite restaurants array
             persistFavorites(restaurants) { result in
                 completion(result)
+                // notify observers that the favorites list has changed
+                NotificationCenter.default.post(name: type(of: self).favoritesListChangedNotification,
+                                                object: nil)
             }
         }
     }
@@ -58,6 +63,9 @@ class FavoritesManager {
             // persist the modified favorites array
             persistFavorites(restaurants ?? []) { result in
                 completion(result)
+                // notify observers that the favorites list has changed
+                NotificationCenter.default.post(name: type(of: self).favoritesListChangedNotification,
+                                                object: nil)
             }
         }
     }
