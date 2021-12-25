@@ -18,6 +18,7 @@ class RestaurantsNoDataView: UIView {
         titleLabel.text = title
         titleLabel.font = UIFont.boldSystemFont(ofSize: 22)
         titleLabel.numberOfLines = 2
+        titleLabel.textColor = .black
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(titleLabel)
 
