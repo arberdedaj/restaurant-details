@@ -137,6 +137,7 @@
             <point key="canvasLocation" x="-681.15942028985512" y="-2.0089285714285712"/>
         </scene>
     </scenes>
+    <color key="tintColor" systemColor="labelColor"/>
     <resources>
         <image name="favorites-toolbar-icon" width="30.5" height="28.5"/>
         <image name="sorting-icon" width="28" height="28"/>
