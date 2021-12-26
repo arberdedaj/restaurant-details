@@ -31,7 +31,7 @@ class StorageMock: StorageProtocol {
     
     func read<T>(_ object: T.Type, for key: String) throws -> T? where T : Decodable {
         if isBehaviourSuccess() {
-            return object as? T
+            return [Restaurant(id: "1", name: nil, imageUrl: nil, location: nil, rating: nil, photos: nil)] as? T
         } else {
             let error = createError("Failed to load a value for the given key",
                                     reason: "Reason unknown",
