@@ -41,7 +41,7 @@ class RestaurantsNoDataView: UIView {
 
     private func setupTitleLabelConstraints(_ titleLabel: UILabel,
                                             superView: UIView) -> [NSLayoutConstraint] {
-        return [titleLabel.leadingAnchor.constraint(equalTo: superView.leadingAnchor, constant: 16),
+        return [titleLabel.leadingAnchor.constraint(equalTo: superView.safeAreaLayoutGuide.leadingAnchor, constant: 16),
                 titleLabel.topAnchor.constraint(equalTo: superView.topAnchor, constant: 32),
                 titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: superView.trailingAnchor,
                                                      constant: -16)]
