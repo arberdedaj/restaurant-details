@@ -96,7 +96,8 @@ class RestaurantTableViewHeader: UIView {
                                            superView: UIView) -> [NSLayoutConstraint] {
         return [imageView.leadingAnchor.constraint(equalTo: superView.leadingAnchor),
                 imageView.topAnchor.constraint(equalTo: superView.topAnchor),
-                imageView.trailingAnchor.constraint(equalTo: superView.trailingAnchor)]
+                imageView.trailingAnchor.constraint(equalTo: superView.trailingAnchor),
+                imageView.heightAnchor.constraint(greaterThanOrEqualToConstant: 150)]
     }
 
     private func setupStackViewConstraints(_ stackView: UIStackView,

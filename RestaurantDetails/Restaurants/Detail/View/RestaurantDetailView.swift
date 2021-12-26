@@ -76,7 +76,7 @@ class RestaurantDetailView: UIView, UITableViewDelegate, UITableViewDataSource {
         return RestaurantTableViewHeader(frame: CGRect(x: 0,
                                                        y: 0,
                                                        width: tableView.frame.width,
-                                                       height: 320))
+                                                       height: 300))
     }
 
     private func setupTableViewConstraints(_ tableView: UITableView,
