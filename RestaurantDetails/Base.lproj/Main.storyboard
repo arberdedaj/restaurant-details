@@ -100,7 +100,7 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Anc-LY-648"/>
-                                    <barButtonItem title="Item" image="favorites-toolbar-icon" id="wQd-sa-6p4">
+                                    <barButtonItem title="Item" image="favorites-empty-star" id="wQd-sa-6p4">
                                         <color key="tintColor" systemColor="labelColor"/>
                                         <connections>
                                             <action selector="favoritesButtonTapped:" destination="BYZ-38-t0r" id="SNb-3w-wKC"/>
@@ -139,7 +139,7 @@
     </scenes>
     <color key="tintColor" systemColor="labelColor"/>
     <resources>
-        <image name="favorites-toolbar-icon" width="30.5" height="28.5"/>
+        <image name="favorites-empty-star" width="30.5" height="28.5"/>
         <image name="sorting-icon" width="28" height="28"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
