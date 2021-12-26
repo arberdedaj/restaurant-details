@@ -13,9 +13,14 @@ protocol RestaurantDetailViewDelegate: AnyObject {
     func getTitleForHeader(in section: Int) -> String?
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    func displayImage(_ image: UIImage)
+    func displayImageWithUrl(_ url: String)
 }
 
-class RestaurantDetailView: UIView, UITableViewDelegate, UITableViewDataSource {
+class RestaurantDetailView: UIView,
+                            UITableViewDelegate,
+                            UITableViewDataSource,
+                            RestaurantTableViewHeaderDelegate {
 
     weak var delegate: RestaurantDetailViewDelegate?
 
@@ -73,10 +78,12 @@ class RestaurantDetailView: UIView, UITableViewDelegate, UITableViewDataSource {
     }
 
     private func setupTableViewHeader() -> RestaurantTableViewHeader {
-        return RestaurantTableViewHeader(frame: CGRect(x: 0,
-                                                       y: 0,
-                                                       width: tableView.frame.width,
-                                                       height: 300))
+        let tableViewHeader = RestaurantTableViewHeader(frame: CGRect(x: 0,
+                                                                      y: 0,
+                                                                      width: tableView.frame.width,
+                                                                      height: 300))
+        tableViewHeader.delegate = self
+        return tableViewHeader
     }
 
     private func setupTableViewConstraints(_ tableView: UITableView,
@@ -85,6 +92,18 @@ class RestaurantDetailView: UIView, UITableViewDelegate, UITableViewDataSource {
                 tableView.topAnchor.constraint(equalTo: superView.safeAreaLayoutGuide.topAnchor),
                 tableView.trailingAnchor.constraint(equalTo: superView.trailingAnchor),
                 tableView.bottomAnchor.constraint(equalTo: superView.bottomAnchor)]
+    }
+
+    // MARK: RestaurantTableViewHeaderDelegate
+
+    func tableViewHeader(_ tableViewHeader: RestaurantTableViewHeader,
+                         tappedImageViewWithImage image: UIImage) {
+        delegate?.displayImage(image)
+    }
+
+    func tableViewHeader(_ tableViewHeader: RestaurantTableViewHeader,
+                         tappedImageViewWithUrl url: String) {
+        delegate?.displayImageWithUrl(url)
     }
 
     // MARK: UITableViewDelegate

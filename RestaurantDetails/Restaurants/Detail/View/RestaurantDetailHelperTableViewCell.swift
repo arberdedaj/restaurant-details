@@ -7,6 +7,8 @@
 
 import UIKit
 
+/// A TableView Cell which can show a loading view (while data is being loaded for that section),
+/// and an error view if there was an error while loading the data.
 class RestaurantDetailHelperTableViewCell: UITableViewCell {
     
     var onRetryButtonTapped: (() -> Void)?

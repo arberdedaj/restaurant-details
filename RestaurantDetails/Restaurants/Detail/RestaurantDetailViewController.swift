@@ -64,6 +64,7 @@ class RestaurantDetailViewController: UIViewController,
     }
 
     private func setupFavoriteBarButtonItem(isFavorite: Bool) -> UIBarButtonItem {
+        // set an empty star image if it is not a favorite, a full star image otherwise
         let image = isFavorite ? UIImage(named: "favorites-toolbar-icon") : UIImage(named: "favorites-empty-star")
         let barButtonItem = UIBarButtonItem(image: image,
                                             style: .plain,
@@ -209,6 +210,18 @@ class RestaurantDetailViewController: UIViewController,
         } else {
             return UITableViewCell()
         }
+    }
+
+    func displayImage(_ image: UIImage) {
+        let pictureViewController = PictureViewController(image: image)
+        let navigationController = UINavigationController(rootViewController: pictureViewController)
+        present(navigationController, animated: true, completion: nil)
+    }
+
+    func displayImageWithUrl(_ url: String) {
+        let pictureViewController = PictureViewController(imageUrl: url)
+        let navigationController = UINavigationController(rootViewController: pictureViewController)
+        present(navigationController, animated: true, completion: nil)
     }
 
     required init?(coder: NSCoder) {
