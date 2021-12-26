@@ -56,12 +56,24 @@ class FavoritesManager {
                         completion: ((Bool) -> Void)) {
         loadFavorites { restaurants in
             var restaurants = restaurants
+            // if we have no persisted favorites yet,
+            // ensure we have an allocated array to work with
+            if restaurants == nil {
+                restaurants = []
+            }
+
+            // check if the given restaurant is already favorite
+            guard var restaurants = restaurants,
+            restaurants.contains(where: { $0.id == restaurant.id }) else {
+                completion(false)
+                return
+            }
 
             // remove the given restaurant object from the favorite restaurants array
-            restaurants?.removeAll(where: { $0.id == restaurant.id })
+            restaurants.removeAll(where: { $0.id == restaurant.id })
 
             // persist the modified favorites array
-            persistFavorites(restaurants ?? []) { result in
+            persistFavorites(restaurants) { result in
                 completion(result)
                 // notify observers that the favorites list has changed
                 NotificationCenter.default.post(name: type(of: self).favoritesListChangedNotification,
