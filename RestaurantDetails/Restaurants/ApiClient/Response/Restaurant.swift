@@ -15,6 +15,20 @@ class Restaurant: Codable {
     let rating: Double?
     let photos: [String]?
 
+    init(id: String?,
+         name: String?,
+         imageUrl: String?,
+         location: RestaurantLocation?,
+         rating: Double?,
+         photos: [String]?) {
+        self.id = id
+        self.name = name
+        self.imageUrl = imageUrl
+        self.location = location
+        self.rating = rating
+        self.photos = photos
+    }
+
     enum CodingKeys: String, CodingKey {
         case id, name, location, rating, photos
         case imageUrl = "image_url"
@@ -23,6 +37,10 @@ class Restaurant: Codable {
 
 class RestaurantLocation: Codable {
     let displayAddress: [String]?
+
+    init(displayAddress: [String]?) {
+        self.displayAddress = displayAddress
+    }
 
     enum CodingKeys: String, CodingKey {
         case displayAddress = "display_address"

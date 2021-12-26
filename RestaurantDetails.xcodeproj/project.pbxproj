@@ -31,6 +31,11 @@
 		0BBBF79627785110006BD398 /* PictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBBF79527785110006BD398 /* PictureViewController.swift */; };
 		0BBBF79927785EE3006BD398 /* ApiClientUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBBF79827785EE3006BD398 /* ApiClientUtils.swift */; };
 		0BBBF79B27785FF1006BD398 /* ApiClientUtilsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBBF79A27785FF1006BD398 /* ApiClientUtilsTest.swift */; };
+		0BBBF79D277863BC006BD398 /* RestaurantsRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBBF79C277863BC006BD398 /* RestaurantsRepositoryTest.swift */; };
+		0BBBF7A027786418006BD398 /* RestaurantsApiClientMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBBF79F27786418006BD398 /* RestaurantsApiClientMock.swift */; };
+		0BBBF7A2277864A5006BD398 /* RestaurantsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBBF7A1277864A5006BD398 /* RestaurantsMock.swift */; };
+		0BBBF7A42778743C006BD398 /* FavoritesPersistenceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBBF7A32778743C006BD398 /* FavoritesPersistenceTest.swift */; };
+		0BBBF7A62778748A006BD398 /* StorageMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBBF7A52778748A006BD398 /* StorageMock.swift */; };
 		0BBE94522775E71400965345 /* RestaurantsNoDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBE94512775E71400965345 /* RestaurantsNoDataView.swift */; };
 		0BBE9455277605A600965345 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBE9454277605A600965345 /* FavoritesViewController.swift */; };
 		0BBE94582776071600965345 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBE94572776071600965345 /* FavoritesView.swift */; };
@@ -93,6 +98,11 @@
 		0BBBF79527785110006BD398 /* PictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureViewController.swift; sourceTree = "<group>"; };
 		0BBBF79827785EE3006BD398 /* ApiClientUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClientUtils.swift; sourceTree = "<group>"; };
 		0BBBF79A27785FF1006BD398 /* ApiClientUtilsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClientUtilsTest.swift; sourceTree = "<group>"; };
+		0BBBF79C277863BC006BD398 /* RestaurantsRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsRepositoryTest.swift; sourceTree = "<group>"; };
+		0BBBF79F27786418006BD398 /* RestaurantsApiClientMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsApiClientMock.swift; sourceTree = "<group>"; };
+		0BBBF7A1277864A5006BD398 /* RestaurantsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsMock.swift; sourceTree = "<group>"; };
+		0BBBF7A32778743C006BD398 /* FavoritesPersistenceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesPersistenceTest.swift; sourceTree = "<group>"; };
+		0BBBF7A52778748A006BD398 /* StorageMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageMock.swift; sourceTree = "<group>"; };
 		0BBE94512775E71400965345 /* RestaurantsNoDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsNoDataView.swift; sourceTree = "<group>"; };
 		0BBE9454277605A600965345 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		0BBE94572776071600965345 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
@@ -192,8 +202,11 @@
 		0B35FDB4277111AD0088BC00 /* RestaurantDetailsTests */ = {
 			isa = PBXGroup;
 			children = (
+				0BBBF79E277863FD006BD398 /* Mocks */,
 				0B35FDB5277111AD0088BC00 /* RestaurantDetailsTests.swift */,
 				0BBBF79A27785FF1006BD398 /* ApiClientUtilsTest.swift */,
+				0BBBF79C277863BC006BD398 /* RestaurantsRepositoryTest.swift */,
+				0BBBF7A32778743C006BD398 /* FavoritesPersistenceTest.swift */,
 			);
 			path = RestaurantDetailsTests;
 			sourceTree = "<group>";
@@ -299,6 +312,16 @@
 				0BBBF79827785EE3006BD398 /* ApiClientUtils.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		0BBBF79E277863FD006BD398 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				0BBBF79F27786418006BD398 /* RestaurantsApiClientMock.swift */,
+				0BBBF7A1277864A5006BD398 /* RestaurantsMock.swift */,
+				0BBBF7A52778748A006BD398 /* StorageMock.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		0BBE94532776059900965345 /* Favorites */ = {
@@ -639,8 +662,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BBBF7A027786418006BD398 /* RestaurantsApiClientMock.swift in Sources */,
+				0BBBF7A42778743C006BD398 /* FavoritesPersistenceTest.swift in Sources */,
 				0B35FDB6277111AD0088BC00 /* RestaurantDetailsTests.swift in Sources */,
+				0BBBF7A62778748A006BD398 /* StorageMock.swift in Sources */,
+				0BBBF79D277863BC006BD398 /* RestaurantsRepositoryTest.swift in Sources */,
 				0BBBF79B27785FF1006BD398 /* ApiClientUtilsTest.swift in Sources */,
+				0BBBF7A2277864A5006BD398 /* RestaurantsMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
