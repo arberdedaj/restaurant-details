@@ -13,7 +13,6 @@
 		0B35FDA6277111AA0088BC00 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B35FDA4277111AA0088BC00 /* Main.storyboard */; };
 		0B35FDA8277111AD0088BC00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B35FDA7277111AD0088BC00 /* Assets.xcassets */; };
 		0B35FDAB277111AD0088BC00 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B35FDA9277111AD0088BC00 /* LaunchScreen.storyboard */; };
-		0B35FDB6277111AD0088BC00 /* RestaurantDetailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B35FDB5277111AD0088BC00 /* RestaurantDetailsTests.swift */; };
 		0B35FDC0277111AD0088BC00 /* RestaurantDetailsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B35FDBF277111AD0088BC00 /* RestaurantDetailsUITests.swift */; };
 		0B35FDC2277111AD0088BC00 /* RestaurantDetailsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B35FDC1277111AD0088BC00 /* RestaurantDetailsUITestsLaunchTests.swift */; };
 		0B35FDD1277126C50088BC00 /* RestaurantsApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B35FDD0277126C50088BC00 /* RestaurantsApiClient.swift */; };
@@ -41,6 +40,7 @@
 		0BBBF7AC277887EF006BD398 /* FileManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBBF7AB277887EF006BD398 /* FileManagerMock.swift */; };
 		0BBBF7AE2778880C006BD398 /* JSONDecodableMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBBF7AD2778880C006BD398 /* JSONDecodableMock.swift */; };
 		0BBBF7B027788956006BD398 /* FileStorageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBBF7AF27788956006BD398 /* FileStorageTest.swift */; };
+		0BBBF7B227788B58006BD398 /* RestaurantUtilsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBBF7B127788B58006BD398 /* RestaurantUtilsTest.swift */; };
 		0BBE94522775E71400965345 /* RestaurantsNoDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBE94512775E71400965345 /* RestaurantsNoDataView.swift */; };
 		0BBE9455277605A600965345 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBE9454277605A600965345 /* FavoritesViewController.swift */; };
 		0BBE94582776071600965345 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBE94572776071600965345 /* FavoritesView.swift */; };
@@ -84,7 +84,6 @@
 		0B35FDAA277111AD0088BC00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0B35FDAC277111AD0088BC00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0B35FDB1277111AD0088BC00 /* RestaurantDetailsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RestaurantDetailsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0B35FDB5277111AD0088BC00 /* RestaurantDetailsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailsTests.swift; sourceTree = "<group>"; };
 		0B35FDBB277111AD0088BC00 /* RestaurantDetailsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RestaurantDetailsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B35FDBF277111AD0088BC00 /* RestaurantDetailsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailsUITests.swift; sourceTree = "<group>"; };
 		0B35FDC1277111AD0088BC00 /* RestaurantDetailsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailsUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -113,6 +112,7 @@
 		0BBBF7AB277887EF006BD398 /* FileManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerMock.swift; sourceTree = "<group>"; };
 		0BBBF7AD2778880C006BD398 /* JSONDecodableMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecodableMock.swift; sourceTree = "<group>"; };
 		0BBBF7AF27788956006BD398 /* FileStorageTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorageTest.swift; sourceTree = "<group>"; };
+		0BBBF7B127788B58006BD398 /* RestaurantUtilsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantUtilsTest.swift; sourceTree = "<group>"; };
 		0BBE94512775E71400965345 /* RestaurantsNoDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsNoDataView.swift; sourceTree = "<group>"; };
 		0BBE9454277605A600965345 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		0BBE94572776071600965345 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
@@ -213,12 +213,12 @@
 			isa = PBXGroup;
 			children = (
 				0BBBF79E277863FD006BD398 /* Mocks */,
-				0B35FDB5277111AD0088BC00 /* RestaurantDetailsTests.swift */,
 				0BBBF79A27785FF1006BD398 /* ApiClientUtilsTest.swift */,
 				0BBBF79C277863BC006BD398 /* RestaurantsRepositoryTest.swift */,
 				0BBBF7A32778743C006BD398 /* FavoritesPersistenceTest.swift */,
 				0BBBF7A727787B9A006BD398 /* FavoritesManagerTest.swift */,
 				0BBBF7AF27788956006BD398 /* FileStorageTest.swift */,
+				0BBBF7B127788B58006BD398 /* RestaurantUtilsTest.swift */,
 			);
 			path = RestaurantDetailsTests;
 			sourceTree = "<group>";
@@ -680,10 +680,10 @@
 				0BBBF7A027786418006BD398 /* RestaurantsApiClientMock.swift in Sources */,
 				0BBBF7B027788956006BD398 /* FileStorageTest.swift in Sources */,
 				0BBBF7A42778743C006BD398 /* FavoritesPersistenceTest.swift in Sources */,
-				0B35FDB6277111AD0088BC00 /* RestaurantDetailsTests.swift in Sources */,
 				0BBBF7A827787B9A006BD398 /* FavoritesManagerTest.swift in Sources */,
 				0BBBF7A62778748A006BD398 /* StorageMock.swift in Sources */,
 				0BBBF79D277863BC006BD398 /* RestaurantsRepositoryTest.swift in Sources */,
+				0BBBF7B227788B58006BD398 /* RestaurantUtilsTest.swift in Sources */,
 				0BBBF7AE2778880C006BD398 /* JSONDecodableMock.swift in Sources */,
 				0BBBF7AA277880D6006BD398 /* FavoritesPersistenceMock.swift in Sources */,
 				0BBBF79B27785FF1006BD398 /* ApiClientUtilsTest.swift in Sources */,
