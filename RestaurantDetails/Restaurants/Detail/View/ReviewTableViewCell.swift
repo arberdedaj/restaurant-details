@@ -85,7 +85,12 @@ class ReviewTableViewCell: UITableViewCell {
 
     private func setupUserNameLabel() -> UILabel {
         let label = UILabel()
-        label.font = UIFont(name: "AvenirNext-Medium", size: 15)
+        if let customFont = UIFont(name: "AvenirNext-Medium", size: 15) {
+            // dynamic font size
+            label.font = UIFontMetrics.default.scaledFont(for: customFont)
+            // enable dynamic font size
+            label.adjustsFontForContentSizeCategory = true
+        }
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -93,7 +98,12 @@ class ReviewTableViewCell: UITableViewCell {
 
     private func setupReviewTextLabel() -> UILabel {
         let label = UILabel()
-        label.font = UIFont(name: "AvenirNext-Regular", size: 15)
+        if let customFont = UIFont(name: "AvenirNext-Regular", size: 15) {
+            // dynamic font size
+            label.font = UIFontMetrics.default.scaledFont(for: customFont)
+            // enable dynamic font size
+            label.adjustsFontForContentSizeCategory = true
+        }
         label.textColor = .black
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false

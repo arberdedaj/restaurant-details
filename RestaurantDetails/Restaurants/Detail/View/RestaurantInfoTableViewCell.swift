@@ -72,7 +72,12 @@ class RestaurantInfoTableViewCell: UITableViewCell {
 
     private func setupNameLabel() -> UILabel {
         let nameLabel = UILabel()
-        nameLabel.font = UIFont(name: "AvenirNext-Medium", size: 20)
+        if let customFont = UIFont(name: "AvenirNext-Medium", size: 20) {
+            // dynamic font size
+            nameLabel.font = UIFontMetrics.default.scaledFont(for: customFont)
+            // enable dynamic font size
+            nameLabel.adjustsFontForContentSizeCategory = true
+        }
         nameLabel.numberOfLines = 0
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         return nameLabel
@@ -80,7 +85,12 @@ class RestaurantInfoTableViewCell: UITableViewCell {
 
     private func setupAddressLabel() -> UILabel {
         let descriptionLabel = UILabel()
-        descriptionLabel.font = UIFont(name: "AvenirNext-Regular", size: 17)
+        if let customFont = UIFont(name: "AvenirNext-Regular", size: 17) {
+            // dynamic font size
+            descriptionLabel.font = UIFontMetrics.default.scaledFont(for: customFont)
+            // enable dynamic font size
+            descriptionLabel.adjustsFontForContentSizeCategory = true
+        }
         descriptionLabel.textColor = .darkGray
         descriptionLabel.numberOfLines = 0
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -88,10 +98,10 @@ class RestaurantInfoTableViewCell: UITableViewCell {
     }
 
     private func setupRatingLabel() -> UILabel {
-        let nameLabel = UILabel()
-        nameLabel.font = UIFont(name: "AvenirNext-Medium", size: 17)
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        return nameLabel
+        let ratingLabel = UILabel()
+        ratingLabel.font = UIFont(name: "AvenirNext-Medium", size: 17)
+        ratingLabel.translatesAutoresizingMaskIntoConstraints = false
+        return ratingLabel
     }
 
     private func setupRatingContainerView() -> UIView {

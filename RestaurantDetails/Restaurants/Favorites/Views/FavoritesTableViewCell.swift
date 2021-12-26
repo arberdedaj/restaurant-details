@@ -44,7 +44,7 @@ class FavoritesTableViewCell: UITableViewCell {
                                                                    superView: contentView,
                                                                    topView: favoriteNameLabel,
                                                                    leadingView: favoriteImageView)
-        addConstraints(addressLabelConstraints)
+        contentView.addConstraints(addressLabelConstraints)
     }
 
     private func setupImageView() -> UIImageView {
@@ -56,16 +56,25 @@ class FavoritesTableViewCell: UITableViewCell {
 
     private func setupNameLabel() -> UILabel {
         let nameLabel = UILabel()
-        nameLabel.font = UIFont(name: "AvenirNext-Medium", size: 17)
+        if let customFont = UIFont(name: "AvenirNext-Medium", size: 17) {
+            // dynamic font size
+            nameLabel.font = UIFontMetrics.default.scaledFont(for: customFont)
+            // enable dynamic font size
+            nameLabel.adjustsFontForContentSizeCategory = true
+        }
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         return nameLabel
     }
 
     private func setupAddressLabel() -> UILabel {
         let descriptionLabel = UILabel()
-        descriptionLabel.font = UIFont(name: "AvenirNext-Regular", size: 16)
+        if let customFont = UIFont(name: "AvenirNext-Regular", size: 16) {
+            // dynamic font size
+            descriptionLabel.font = UIFontMetrics.default.scaledFont(for: customFont)
+            // enable dynamic font size
+            descriptionLabel.adjustsFontForContentSizeCategory = true
+        }
         descriptionLabel.textColor = .darkGray
-        descriptionLabel.numberOfLines = 0
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         return descriptionLabel
     }
@@ -74,7 +83,7 @@ class FavoritesTableViewCell: UITableViewCell {
                                            superView: UIView) -> [NSLayoutConstraint] {
         return [imageView.leadingAnchor.constraint(equalTo: superView.leadingAnchor, constant: 16),
                 imageView.topAnchor.constraint(equalTo: superView.topAnchor, constant: 16),
-                imageView.bottomAnchor.constraint(equalTo: superView.bottomAnchor, constant: -16),
+                imageView.bottomAnchor.constraint(lessThanOrEqualTo: superView.bottomAnchor, constant: -16),
                 imageView.widthAnchor.constraint(equalToConstant: 55),
                 imageView.heightAnchor.constraint(equalToConstant: 55)]
     }

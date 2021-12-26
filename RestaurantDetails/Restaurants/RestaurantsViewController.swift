@@ -258,8 +258,21 @@ class RestaurantsViewController: UIViewController,
         if let restaurant = restaurants?[indexPath.row] {
             // set name label text
             cell.nameLabel.text = restaurant.name ?? "-"
+            if let customFont = UIFont(name: "AvenirNext-Medium", size: 18) {
+                // dynamic font size
+                cell.nameLabel.font = UIFontMetrics.default.scaledFont(for: customFont)
+                // enable dynamic font size
+                cell.nameLabel.adjustsFontForContentSizeCategory = true
+            }
+            
             // set address label text
             cell.addressLabel.text = RestaurantUtils.getFormattedRestaurantAddress(restaurant) ?? "-"
+            if let customFont = UIFont(name: "AvenirNext-Regular", size: 16) {
+                // dynamic font size
+                cell.addressLabel.font = UIFontMetrics.default.scaledFont(for: customFont)
+                // enable dynamic font size
+                cell.addressLabel.adjustsFontForContentSizeCategory = true
+            }
 
             if let imageUrlString = restaurant.imageUrl,
                let imageUrl = URL(string: imageUrlString) {
